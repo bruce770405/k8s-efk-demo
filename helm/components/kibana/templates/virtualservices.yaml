@@ -1,0 +1,32 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: kibana-kibana
+  labels:
+    app: kibana
+spec:
+  hosts:
+    - kibana.35.238.82.53.nip.io
+  gateways:
+    - kibana-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: kibana-kibana
+          corsPolicy:
+            allowCredentials: false
+            allowHeaders:
+              - content-type
+              - x-author
+            allowMethods:
+              - POST
+              - GET
+              - PUT
+              - PATCH
+              - OPTIONS
+            allowOrigins:
+              - exact: '*'
+            maxAge: "86400"
