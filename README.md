@@ -30,7 +30,21 @@ kubectl create ns k8s-efk
 * example: helm install -n default elasticsearch ./helm/components/elasticsearch/ -f ./helm/components/elasticsearch/values.yaml
 
 ### Install all log apps in minikube to demo
-* helm install -n default elasticsearch ./helm/components/elasticsearch/ -f ./helm/components/elasticsearch/example/minikube/values.yaml
-* helm install -n default kibana  ./helm/components/kibana/ -f ./helm/components/kibana/values.yaml
-* helm install -n default fluentd  ./helm/components/fluentd/ -f ./helm/components/fluentd/values.yaml
+* Elasticsearch for minikube demo
+  ```
+  minikube addons enable default-storageclass
+  minikube addons enable storage-provisioner
+  helm install -n default elasticsearch ./helm/components/elasticsearch/ -f ./helm/components/elasticsearch/example/minikube/values.yaml
+  ```
+* Kibana for minikube demo
+  ```
+  helm install -n default kibana elastic/kibana
+  kubectl port-forward deployment/kibana-kibana 5601
+  ```
+  
+* Fluentd for minikube demo
+  ```
+  helm install -n default fluentd  ./helm/components/fluentd/ -f ./helm/components/fluentd/values.yaml
+  ```
+
 
