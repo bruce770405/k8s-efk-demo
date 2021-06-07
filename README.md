@@ -42,9 +42,14 @@ kubectl create ns k8s-efk
   kubectl port-forward deployment/kibana-kibana 5601
   ```
   
-* Fluentd for minikube demo
+* Fluentd for minikube demo (optional)
   ```
   helm install -n default fluentd  ./helm/components/fluentd/ -f ./helm/components/fluentd/values.yaml
+  ```
+  
+* Logstash for minikube demo
+  ```
+  helm install -n default fluentd  ./helm/components/logstash/ -f ./helm/components/logstash/example/elasticsearch/values.yaml
   ```
 
 
