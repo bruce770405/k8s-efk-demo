@@ -15,10 +15,10 @@ minikube start --memory=8000 --cpus=3
     * helmenv global 3.5.1
     * helm plugin install https://github.com/databus23/helm-diff --version master
     
-### Download and Install Istio
+### Download and Install Istio (Optional)
 ````
 1. brew install istioctl
-2. minikube start --memory=8000 --cpus=4 ## 使用 8G 的 memory 和 4 core minikube CPUs
+2. minikube start --memory=8000 --cpus=4 ## 使用 8G 的 memory 和 4 core minikube CPUs，否則 minikube 資源會不夠
 3. minikube tunnel --cleanup ## 如果你希望 minikube 提供一个LoadBalance给 Istio，你可以使用 minikube tunnel。 在另一個 Terminal 執行命令，因为 minikube tunnel 會block你的 Terminal 用來顯示網路訊息
 4. istioctl install
 5. focus to minikube tunnel and keyin password to access  Starting tunnel for service istio-ingressgateway.
@@ -26,8 +26,10 @@ minikube start --memory=8000 --cpus=3
 ### Cmd
 kubectl create ns k8s-efk
 * helm install -n default {namespace} ./helm/components/{component}/ -f ./helm/components/{component}/{values}.yaml
-* example: helm install -n default kibana ./helm/components/kibana/ -f ./helm/components/kibana/values.yaml
-* example: helm install -n default elasticsearch ./helm/components/elasticsearch/ -f ./helm/components/elasticsearch/values.yaml
+  * example: helm install -n default kibana ./helm/components/kibana/ -f ./helm/components/kibana/values.yaml
+  * example: helm install -n default elasticsearch ./helm/components/elasticsearch/ -f ./helm/components/elasticsearch/values.yaml
+* helm create {project-name}
+  * example: helm create spring-app
 
 ### Install all log apps in minikube to demo
 * Elasticsearch for minikube demo
@@ -51,5 +53,7 @@ kubectl create ns k8s-efk
   ```
   helm install -n default fluentd  ./helm/components/logstash/ -f ./helm/components/logstash/example/elasticsearch/values.yaml
   ```
+  
+### Another 
 
 
