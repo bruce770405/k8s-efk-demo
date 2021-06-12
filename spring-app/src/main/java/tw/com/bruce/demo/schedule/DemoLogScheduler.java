@@ -5,11 +5,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
- * TODO
+ * demo scheduler.
  *
- * @author brucehsu
- * @Date 2021/5/27 1:03 下午
- * @Version 1.0
+ * @author BruceHsu
+ * @version 1.0
+ * @since  2021/5/27 1:03 下午
  **/
 @Component
 @Slf4j
@@ -17,6 +17,6 @@ public class DemoLogScheduler {
 
     @Scheduled(fixedRate = 5000)
     public void log() {
-        log.info("This is \na multiline\n\n\nlog");
+        log.info("This is demo spring log");
     }
 }
