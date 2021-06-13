@@ -3,7 +3,7 @@
 ### Install Minikube
 ```
 brew cask install minikube
-minikube start --memory=8000 --cpus=3
+minikube start --memory=3000 --cpus=3
 ```
 ### Control command line
 * kubectl
