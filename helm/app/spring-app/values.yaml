@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: tw.com.bruce/spring-app
-  pullPolicy: IfNotPresent
+  repository: spring-app
+  pullPolicy:  Never #IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.0.1-SNAPSHOT"
+  tag: "0.0.1"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -40,8 +40,8 @@ service:
   name: spring-app
   type: NodePort
 #  port: 80
-  externalPort: 8080
-  internalPort: 8080
+  externalPort: 8000
+  internalPort: 8000
 
 ingress:
   enabled: false

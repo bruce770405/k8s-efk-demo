@@ -7,9 +7,9 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.externalPort}}
-      targetPort: {{ .Values.service.internalPort}}
-      protocol: TCP
+    - port: {{ .Values.service.externalPort}} # the port for client to access
+      targetPort: {{ .Values.service.internalPort}} # the port that web server listen on
+      protocol: TCP # TCP/UDP are available, default is TCP
       name: http
   selector:
     {{- include "spring-app.selectorLabels" . | nindent 4 }}

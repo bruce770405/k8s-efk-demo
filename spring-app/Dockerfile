@@ -7,5 +7,5 @@ RUN mvn -f /home/app/pom.xml clean package
 FROM openjdk:11.0.7-jre-slim
 RUN mkdir /app
 EXPOSE 8000
-COPY --from=0 /home/app/target/spring-app-demo-0.0.1-SNAPSHOT.jar /app/spring.jar
+COPY --from=0 /home/app/target/spring-app-0.0.1-SNAPSHOT.jar /app/spring.jar
 ENTRYPOINT ["java","-jar","/app/spring.jar"]
