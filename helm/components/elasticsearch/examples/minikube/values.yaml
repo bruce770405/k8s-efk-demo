@@ -21,6 +21,3 @@ volumeClaimTemplate:
   resources:
     requests:
       storage: 100M
-
-# https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html#request-params wait_for_status
-clusterHealthCheckParams: "wait_for_status=yellow&timeout=1s"

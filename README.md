@@ -42,7 +42,7 @@ minikube start --memory=8000 --cpus=3
 ### Install all log apps in minikube to demo
 * spring-app for demo
   ```
-  helm install -n app spring-app .
+  helm install -n default spring-app .
   ```
   
 * Elasticsearch for minikube demo

@@ -59,7 +59,7 @@ hostAliases: []
 #  - "bar.local"
 
 image: "docker.elastic.co/elasticsearch/elasticsearch"
-imageTag: "7.12.2-SNAPSHOT"
+imageTag: "7.13.1"
 imagePullPolicy: "IfNotPresent"
 
 podAnnotations: {}
@@ -72,13 +72,21 @@ esJavaOpts: "" # example: "-Xmx1g -Xms1g"
 
 resources:
   requests:
-    cpu: "100m" # 調整這裡來處理資源配給
-    memory: "512M" # 2Gi
+    cpu: "1000m"
+    memory: "2Gi"
   limits:
     cpu: "1000m"
-    memory: "512M" # 2Gi
+    memory: "2Gi"
 
 initResources: {}
+  # limits:
+  #   cpu: "25m"
+  #   # memory: "128Mi"
+  # requests:
+  #   cpu: "25m"
+  #   memory: "128Mi"
+
+sidecarResources: {}
   # limits:
   #   cpu: "25m"
   #   # memory: "128Mi"
@@ -92,7 +100,7 @@ volumeClaimTemplate:
   accessModes: [ "ReadWriteOnce" ]
   resources:
     requests:
-      storage: 10Gi
+      storage: 30Gi
 
 rbac:
   create: false
@@ -216,7 +224,7 @@ readinessProbe:
   successThreshold: 3
   timeoutSeconds: 5
 
-# https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-health.html#request-params wait_for_status
+# https://www.elastic.co/guide/en/elasticsearch/reference/7.13/cluster-health.html#request-params wait_for_status
 clusterHealthCheckParams: "wait_for_status=green&timeout=1s"
 
 ## Use an alternate scheduler.
@@ -246,6 +254,9 @@ ingress:
 
 nameOverride: ""
 fullnameOverride: ""
+
+# https://github.com/elastic/helm-charts/issues/63
+masterTerminationFix: false
 
 lifecycle: {}
   # preStop:

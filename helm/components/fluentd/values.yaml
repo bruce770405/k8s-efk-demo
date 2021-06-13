@@ -277,7 +277,8 @@ fileConfigs:
         </pattern>
         <pattern>
           format regexp
-          expression /^time="(?<time>[^)]*)" level=(?<severity>[^ ]*) msg="(?<message>[^"]*)"( err="(?<error>[^"]*)")?( statusCode=($<status_code>\d+))?/
+          expression /^(?<time>.+) (?<stream>stdout|stderr)( (.))? (?<log>.*)$/
+          time_format '%Y-%m-%d_%H:%M:%S.%3N' ## example : 2021-06-13 12:41:55.441
           keep_time_key false
         </pattern>
       </parse>

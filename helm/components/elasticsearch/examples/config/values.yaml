@@ -15,7 +15,7 @@ extraEnvs:
         name: elastic-config-credentials
         key: username
 
-# This is just a dummy file to make sure thanode.ingestt
+# This is just a dummy file to make sure that
 # the keystore can be mounted at the same time
 # as a custom elasticsearch.yml
 esConfig:
