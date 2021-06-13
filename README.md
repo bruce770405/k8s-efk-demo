@@ -30,10 +30,10 @@ minikube start --memory=8000 --cpus=3
   ```
   * example: kubectl create ns app
   ```
-  helm install -n {namespace} {helm-naming} ./helm/components/{component}/ -f ./helm/components/{component}/{values}.yaml
+  helm install -n {namespace} {helm-naming} ./helm/components/{component}/ --values ./helm/components/{component}/{values}.yaml
   ```
-  * example: helm install -n default kibana ./helm/components/kibana/ -f ./helm/components/kibana/values.yaml
-  * example: helm install -n default elasticsearch ./helm/components/elasticsearch/ -f ./helm/components/elasticsearch/values.yaml
+  * example: helm install -n default kibana ./helm/components/kibana/ --values ./helm/components/kibana/values.yaml
+  * example: helm install -n default elasticsearch ./helm/components/elasticsearch/ --values ./helm/components/elasticsearch/values.yaml
 
 * To be able to work with the docker daemon on your mac/linux host use the docker-env command in your shell:
   ```
@@ -42,19 +42,22 @@ minikube start --memory=8000 --cpus=3
 ### Install all log apps in minikube to demo
 * spring-app for demo
   ```
+  move to helm/app/spring-app folder
   helm install -n default spring-app .
   ```
   
 * Elasticsearch for minikube demo
   ```
-  minikube addons enable default-storageclass
-  minikube addons enable storage-provisioner
-  helm install -n default elasticsearch ./helm/components/elasticsearch/ -f ./helm/components/elasticsearch/example/minikube/values.yaml
+  move to helm/components/elasticsearch folder
+  $ minikube addons enable default-storageclass
+  $ minikube addons enable storage-provisioner
+  $ helm install -n default elasticsearch . --values ./example/minikube/values.yaml
   ```
 * Kibana for minikube demo
   ```
-  helm install -n default kibana elastic/kibana
-  kubectl port-forward deployment/kibana-kibana 5601
+  move to helm/components/kibana folder
+  $ helm install -n default kibana .
+  $ kubectl port-forward deployment/kibana-kibana 5601
   ```
   
 * Fluentd for minikube demo
@@ -62,9 +65,10 @@ minikube start --memory=8000 --cpus=3
   helm install -n default fluentd .
   ```
   
-* Logstash for minikube demo (optional)
+* Logstash for minikube demo (optional component)
   ```
-  helm install -n default logstash  ./helm/components/logstash/ -f ./helm/components/logstash/example/elasticsearch/values.yaml
+  move to helm/components/logstash folder
+  helm install -n default logstash  .
   ```
 
 
