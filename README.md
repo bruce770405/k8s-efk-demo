@@ -62,13 +62,14 @@ minikube start --memory=8000 --cpus=3
   
 * Fluentd for minikube demo
   ```
-  helm install -n default fluentd .
+  move to helm/components/fluentd folder
+  $ helm install -n default fluentd .
   ```
   
 * Logstash for minikube demo (optional component)
   ```
   move to helm/components/logstash folder
-  helm install -n default logstash  .
+  $ helm install -n default logstash  .
   ```
 
 
