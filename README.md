@@ -24,9 +24,13 @@ minikube start --memory=8000 --cpus=3
   5. focus to minikube tunnel and keyin password to access  Starting tunnel for service istio-ingressgateway.
   ```
 ### Cmd
-* kubectl create ns k8s-efk
+* create namespaces
   ```
-  helm install -n default {namespace} ./helm/components/{component}/ -f ./helm/components/{component}/{values}.yaml
+  * kubectl create ns {namespace}
+  ```
+  * example: kubectl create ns app
+  ```
+  helm install -n {namespace} {helm-naming} ./helm/components/{component}/ -f ./helm/components/{component}/{values}.yaml
   ```
   * example: helm install -n default kibana ./helm/components/kibana/ -f ./helm/components/kibana/values.yaml
   * example: helm install -n default elasticsearch ./helm/components/elasticsearch/ -f ./helm/components/elasticsearch/values.yaml
@@ -36,6 +40,11 @@ minikube start --memory=8000 --cpus=3
   eval $(minikube docker-env)
   ```
 ### Install all log apps in minikube to demo
+* spring-app for demo
+  ```
+  helm install -n app spring-app .
+  ```
+  
 * Elasticsearch for minikube demo
   ```
   minikube addons enable default-storageclass
@@ -48,14 +57,14 @@ minikube start --memory=8000 --cpus=3
   kubectl port-forward deployment/kibana-kibana 5601
   ```
   
-* Fluentd for minikube demo (optional)
+* Fluentd for minikube demo
   ```
-  helm install -n default fluentd  ./helm/components/fluentd/ -f ./helm/components/fluentd/values.yaml
+  helm install -n default fluentd .
   ```
   
-* Logstash for minikube demo
+* Logstash for minikube demo (optional)
   ```
-  helm install -n default fluentd  ./helm/components/logstash/ -f ./helm/components/logstash/example/elasticsearch/values.yaml
+  helm install -n default logstash  ./helm/components/logstash/ -f ./helm/components/logstash/example/elasticsearch/values.yaml
   ```
 
 
