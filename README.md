@@ -20,8 +20,8 @@ minikube start --memory=3000 --cpus=3
 ### Download and Install Istio (Optional)
   ```
   1. brew install istioctl
-  2. minikube start --memory=8000 --cpus=4 ## 使用 8G 的 memory 和 4 core minikube CPUs
-  3. minikube tunnel --cleanup ## 如果你希望 minikube 提供一个LoadBalance给 Istio，你可以使用 minikube tunnel。 在另一個 Terminal 執行命令，因为 minikube tunnel 會block你的 Terminal 用來顯示網路訊息
+  2. minikube start --memory=8000 --cpus=4 ## use 8G memory and 4 core CPUs for minikube
+  3. minikube tunnel --cleanup ## if you want to minikube offer you one LoadBalance for Istio，you can use minikube tunnel。 !notice suggest you open another Terminal for this command，because minikube tunnel will block your Terminal.
   4. istioctl install
   5. focus to minikube tunnel and keyin password to access  Starting tunnel for service istio-ingressgateway.
   ```
