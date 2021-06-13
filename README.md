@@ -1,5 +1,7 @@
 # K8s EFK demo
 
+![image](https://github.com/bruce770405/k8s-efk-demo/blob/main/front.png)
+
 ### Install Minikube
 ```
 brew cask install minikube
