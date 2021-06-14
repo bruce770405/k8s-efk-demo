@@ -8,14 +8,16 @@
         <version>2.5.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>tw.com.bruce</groupId>
     <artifactId>spring-app</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>spring-app-demo</name>
+    <version>0.1</version>
+    <name>spring-app</name>
     <description>Demo EFK project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
+        <imagePath>tw.com.bruce</imagePath>
     </properties>
     <dependencies>
         <dependency>
@@ -62,6 +64,30 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>1.8.0</version>
+                <configuration>
+                    <from>
+                        <image>openjdk:11.0.7-jre-slim</image>
+                    </from>
+                    <to>
+                        <image>${imagePath}/${project.name}:${project.version}</image>
+                    </to>
+                    <container>
+                        <entrypoint>
+                            <arg>/bin/sh</arg>
+                            <arg>-c</arg>
+                            <arg>java -Xms512m -Xmx512m -Dspring.profiles.active=${activeProfiles} -Djava.security.egd=file:/dev/./urandom -cp /app/resources:/app/classes:/app/libs/* tw.com.bruce.demo.SpringAppDemoApplication
+                            </arg>
+                        </entrypoint>
+                        <ports>
+                            <port>8000</port>
+                        </ports>
+                    </container>
                 </configuration>
             </plugin>
         </plugins>
