@@ -273,13 +273,15 @@ fileConfigs:
           time_key time
           time_type string
           time_format "%Y-%m-%dT%H:%M:%S.%NZ"
-          keep_time_key false
+          keep_time_key true
         </pattern>
         <pattern>
           format regexp
-          expression /^(?<time>.+) (?<stream>stdout|stderr)( (.))? (?<log>.*)$/
-          time_format '%Y-%m-%d_%H:%M:%S.%3N' ## example : 2021-06-13 12:41:55.441
-          keep_time_key false
+          expression /^(?<time>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3})\s+(?<level>\w+)\s+(?<thread>\[\w+\])\s+(?<class>\w+)\s+(?<message>.*)/
+          time_key time
+          time_type string
+          time_format "%Y-%m-%d %H:%M:%S.%N"
+          keep_time_key true
         </pattern>
       </parse>
       emit_unmatched_lines true
@@ -292,10 +294,20 @@ fileConfigs:
         @label @FLUENT_LOG
       </match>
 
-      # <match kubernetes.var.log.containers.**_kube-system_**>
-      #   @type null
-      #   @id ignore_kube_system_logs
-      # </match>
+      <match kubernetes.var.log.containers.**_kube-system_**>
+        @type null
+        @id ignore_kube_system_logs
+      </match>
+
+      <match kubernetes.var.log.containers.kibana**>
+        @type null
+        @id ignore_kibana_logs
+      </match>
+
+      <match kubernetes.var.log.containers.elasticsearch**>
+        @type null
+        @id ignore_elasticsearch_logs
+      </match>
 
       <filter kubernetes.**>
         @type kubernetes_metadata

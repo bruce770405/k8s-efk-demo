@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: spring-app
+  repository: tw.com.bruce/spring-app
   pullPolicy:  Never #IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.0.1"
+  tag: "0.1"
 
 imagePullSecrets: []
 nameOverride: ""
