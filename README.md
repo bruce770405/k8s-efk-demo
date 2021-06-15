@@ -42,10 +42,15 @@ minikube start --memory=3000 --cpus=3
   eval $(minikube docker-env)
   ```
 ### Install all log apps in minikube to demo
+* spring-app build image
+  ```
+  in the spring-app maven project
+  $ mvn jib:dockerBuild
+  ```
 * spring-app for demo
   ```
   move to helm/app/spring-app folder
-  helm install -n default spring-app .
+  $ helm install -n default spring-app .
   ```
   
 * Elasticsearch for minikube demo
